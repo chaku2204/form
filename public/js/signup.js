@@ -1,26 +1,6 @@
 
 document.getElementById("my-form").addEventListener("submit",validation,false);
 
-const url = "http://localhost:3000/api/data";
-
-async function validemailuser(user,emails){
-    let temp = await fetch(url);
-    let data = await temp.json();
-
-    let ans = {use:true,email:true};
-    for(let i = 0; i<data.length; i++){
-      if(data[i].user==user){
-        ans.use = false;
-      }
-
-      if(data[i].email == emails){
-        ans.email = false;
-      }
-    }
-    return ans;  
-}
-
-
 async function validation(e) {
      var name = document.getElementById("name").value;
     var user = document.getElementById("user").value;
@@ -119,13 +99,8 @@ async function validation(e) {
         e.preventDefault();
     }
 
-    const data = await validemailuser(user,emails);
-    if(data.use == false){
-      document.getElementById("username").innerHTML =
-        " ** already exist";
-
-        e.preventDefault();
-    }
+  
+    
 
 }
 

@@ -27,12 +27,12 @@
     <h4 class="text-blue text-center font-weight-bold" style="font-size: 20px;">
       Login
     </h4>
-
+    
     <div class="container">
       <br />
 
       <div class="col-lg-5 m-auto d-block">
-        <form action="#" onsubmit="return validation()" class="bg-light">
+        <form action="login"  class="bg-light" method="post">
           <div class="form-group">
             <label for="user" class="font-weight-regular"> Username </label>
             <input
@@ -54,7 +54,7 @@
               id="pass"
               autocomplete="off"
             />
-            <span id="passwords" class="text-danger font-weight-regular">
+            <span id="passwords" class="text-danger font-weight-regular">{{invalid}}
             </span>
           </div>
 

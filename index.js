@@ -1,8 +1,11 @@
+require('dotenv').config()
 const express = require("express");
 const hbs = require("hbs");
 const path = require("path");
 const app = express();
-
+const router = require("./router/formroute");
+const cookieparser = require("cookie-parser");
+const aut = require('./middlwear/auth');
 require("./db/connection");
 const bodyParser = require('body-parser');
 const multer = require('multer');
@@ -22,31 +25,26 @@ app.use(express.static(static_path));
 app.use(express.json());
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(upload.array()); 
-
-
-app.get("/signup",(req,res)=>{
-    res.render("index");
-});
-
-app.post("/signup",async (req,res)=>{
-    
-    const docs = new formmodel(req.body);
-    const data = await docs.save();
-    console.log(data);
-    res.send("submited");
-});
-
-app.get("/login",(req,res)=>{
-    res.render("login");
-});
+app.use(upload.array());
+app.use(cookieparser());
+app.use(router);
 
 app.get("/admin/user",(req,res)=>{
     res.render("user");
 })
 
-app.get("/admin",(req,res)=>{
+app.get("/admin",aut,(req,res)=>{
+   
     res.render("admin");
+})
+
+app.get("/logout",aut,async (req,res)=>{
+    res.clearCookie("jwts");
+    req.user.tokens = req.user.tokens.filter((element)=>{
+        return element.token != req.token;
+    })
+    await req.user.save();
+    res.render("login");
 })
 
 
@@ -56,6 +54,8 @@ app.get("/api/data",async(req,res)=>{
 })
 
 
+
+ 
 app.listen(port,()=>{
     console.log("port no",port);
 });

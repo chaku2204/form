@@ -44,6 +44,7 @@
               class="form-control"
               id="name"
               autocomplete="off"
+              value="{{name}}"
             />
             <span id="Name" class="text-danger font-weight-regular"> </span>
           </div>
@@ -56,8 +57,9 @@
               class="form-control"
               id="emails"
               autocomplete="off"
+               value="{{email}}"
             />
-            <span id="emailids" class="text-danger font-weight-regular"> </span>
+            <span id="emailids" class="text-danger font-weight-regular">{{emailerror}}</span>
           </div>
 
           <div class="form-group">
@@ -68,8 +70,9 @@
               class="form-control"
               id="user"
               autocomplete="off"
+              value= "{{username}}" 
             />
-            <span id="username" class="text-danger font-weight-regular"> </span>
+            <span id="username" class="text-danger font-weight-regular"> {{usererror}}</span>
           </div>
 
           <div class="form-group">
@@ -80,6 +83,8 @@
               class="form-control"
               id="pass"
               autocomplete="off"
+              value="{{password}}"
+             
             />
             <span id="passwords" class="text-danger font-weight-regular">
             </span>
@@ -93,6 +98,7 @@
               class="form-control"
               id="conpass"
               autocomplete="off"
+              value="{{cpassword}}"
             />
             <span id="confrmpass" class="text-danger font-weight-regular">
             </span>
@@ -106,6 +112,7 @@
               class="form-control"
               id="mobileNumber"
               autocomplete="off"
+              value="{{mnumber}}"
             />
             <span id="mobileno" class="text-danger font-weight-regular"> </span>
           </div>
@@ -135,4 +142,5 @@
 
      <script src="js/signup.js"></script>
   </body>
+ 
 </html>
